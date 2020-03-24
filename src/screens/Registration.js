@@ -31,7 +31,7 @@ async function signup(email, pass){
     
   };
 
-export default class App extends Component {
+export default class Registration extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
