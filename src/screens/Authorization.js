@@ -26,7 +26,7 @@ async function login(email, pass) {
   
   }
 
-export default class App extends Component {
+export default class Authorization extends Component {
   render() {
     return (
       <View style={styles.container}>
