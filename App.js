@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import firebase from './src/config'
+import Authorization from './src/screens/Authorization'
 
 function storeHighScore(userId, score) {
   firebase.database().ref('users/' + userId).set({
@@ -72,7 +73,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>      
+      <Authorization/>    
     </View>
   );
 }

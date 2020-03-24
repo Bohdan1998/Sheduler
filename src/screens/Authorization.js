@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet,Text,Button,Image,TouchableOpacity} from 'react-native';
+import { View, StyleSheet, Text, Button, Image, TouchableOpacity} from 'react-native';
 
 import t from 'tcomb-form-native'; 
 
@@ -26,7 +26,7 @@ async function login(email, pass) {
   
   }
 
-export default class App extends Component {
+export default class Authorization extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -36,7 +36,7 @@ export default class App extends Component {
          <TouchableOpacity style={styles.buttoncontainer}>
          <Text style={styles.textbotton}>Увійти</Text>
          </TouchableOpacity>
-         <Text style={styles.regtext}>зареєструватись як адмін</Text>
+         <Text style={styles.regtext}>Зареєструватись як адмін</Text>
       </View>
     );
   }
@@ -44,10 +44,10 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    justifyContent: "center",
     marginTop: 50,
     padding: 20,
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
   },
   plantext: {
     fontSize:30,
@@ -56,36 +56,34 @@ const styles = StyleSheet.create({
     marginTop:80,
     fontStyle: 'normal',
     fontWeight: 'bold',
-     color: 'black',
+    color: 'black',
   },
-autotext:{
-  fontWeight: 100,
-  fontSize: 24,
-  marginBottom:30,
-  color: '#B9AEAE',
-  textAlign: 'center',
-},
-buttoncontainer:{
-  width: 150,
-  height: 50,
-  borderRadius: 30,
-  backgroundColor: '#F7C20F',
-  marginTop: 25,
-  marginLeft:90,
-  justifyContent:'CENTER',
-},
-textbotton:{
-  fontWeight: 'bold',
-  fontSize: 24,
-  color: '#000000',
-  textAlign:'center',
-  paddingTop:7,
-},
-regtext:{
-  textAlign:'center',
-  paddingTop:50,
-  color:'#B9AEAE',
-}
-
-
+  autotext: {
+    fontWeight: "100",
+    fontSize: 24,
+    marginBottom: 30,
+    color: '#B9AEAE',
+    textAlign: "center",
+  },
+  buttoncontainer: {
+    width: 150,
+    height: 50,
+    borderRadius: 30,
+    backgroundColor: '#F7C20F',
+    marginTop: 25,
+    marginLeft: 90,
+    justifyContent: "center",
+  },
+  textbotton: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    color: '#000000',
+    textAlign:'center',
+    paddingTop:7,
+  },
+  regtext: {
+    textAlign:'center',
+    paddingTop:50,
+    color:'#B9AEAE',
+  }
 });
