@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet,Text,Button,Image,TouchableOpacity,SafeAreaView, ScrollView} from 'react-native';
 import Constants from 'expo-constants';
-
 import t from 'tcomb-form-native'; 
 
 const Form = t.form.Form;
@@ -10,7 +9,7 @@ const User = t.struct({
   імя: t.String,
   прізвище: t.String,
   назва_компанії: t.String,
-  логін: t.String,
+  email: t.String,
   пароль: t.String,
   підтвердження_паролю: t.String,
 });
@@ -41,12 +40,20 @@ var s_opt={
     },
 }
 }
-function signup_db(login, name, surname, company){
-  firebase.database().ref('users/' + login).set({
+function signup_db(email, name, surname, company){
+  var date = new Date().getDate(); //Current Date
+  var month = new Date().getMonth() + 1; //Current Month
+  var year = new Date().getFullYear(); //Current Year
+  var hours = new Date().getHours(); //Current Hours
+  var min = new Date().getMinutes(); //Current Minutes
+  var sec = new Date().getSeconds(); //Current Seconds
+  let datetime = date + ' ' + month + ' ' + year + ' ' + hours + ':' + min + ':' + sec;
+  firebase.database().ref('users/' + datetime.set({
     name: name,
     surname: surname,
+    email:email,
     company: company,
-  });
+  });    
 }
 
 async function signup_auth(email, pass){
@@ -64,7 +71,7 @@ async function signup_auth(email, pass){
   };
 
   function signup(){
-    signup_db(login, name, surname, company);
+    signup_db(email, name, surname, company);
     signup_auth(email, pass);
     // Navigate to the Home page, the user is auto logged in
   }
