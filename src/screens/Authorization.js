@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Button, Image, TouchableOpacity} from 'react-native';
-
+import firebase from '../config'
 import t from 'tcomb-form-native'; 
 
 const Form = t.form.Form;
@@ -9,6 +9,17 @@ const User = t.struct({
   логін: t.String,
   пароль: t.String,
 });
+var f_opt = {
+  fields:{
+    логін:{
+      keyboardType:'email-address',
+    },
+    пароль:{
+      password: true,
+      secureTextEntry: true,
+    }
+  }
+}
 
 async function login(email, pass) {
     
@@ -32,9 +43,9 @@ export default class Authorization extends Component {
       <View style={styles.container}>
       <Text style={styles.plantext}>ПЛАНУВАЛЬНИК</Text>
       <Text style={styles.autotext}>Авторизація</Text>
-        <Form type={User}  /> 
+        <Form type={User} options={f_opt} /> 
          <TouchableOpacity style={styles.buttoncontainer}>
-         <Text style={styles.textbotton}>Увійти</Text>
+         <Text style={styles.textbotton} onPress={()=>login(email,pass)}>Увійти</Text>
          </TouchableOpacity>
          <Text style={styles.regtext}>Зареєструватись як адмін</Text>
       </View>
