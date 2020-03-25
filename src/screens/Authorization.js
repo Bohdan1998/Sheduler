@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Button, Image, TouchableOpacity} from 'react-native';
+import { View, StyleSheet, Text, Button, Image, TouchableOpacity, Alert} from 'react-native';
 import firebase from '../config'
-import t from 'tcomb-form-native'; 
+import t from 'tcomb-form-native';
+import { render } from 'react-dom';
+import router from '../router'
+import { NavigationContainer } from '@react-navigation/native';
+import MenuScreen from './MenuScreen';
 
 const Form = t.form.Form;
 
@@ -13,6 +17,7 @@ var f_opt = {
   fields:{
     логін:{
       keyboardType:'email-address',
+      textContentType:'emailAddress',
     },
     пароль:{
       password: true,
@@ -28,15 +33,14 @@ async function login(email, pass) {
             .signInWithEmailAndPassword(email, pass);
   
         console.log("Logged In!");
-  
-        // Navigate to the Home page
+        router.MenuScreen;
   
     } catch (error) {
         console.log(error.toString())
+        Alert.alert("Помилка", "Хибний логін або пароль!");
     }
   
   }
-
 export default class Authorization extends Component {
   render() {
     return (
@@ -45,7 +49,7 @@ export default class Authorization extends Component {
       <Text style={styles.autotext}>Авторизація</Text>
         <Form type={User} options={f_opt} /> 
          <TouchableOpacity style={styles.buttoncontainer}>
-         <Text style={styles.textbotton} onPress={()=>login(email,pass)}>Увійти</Text>
+          <Text style={styles.textbotton} onPress={()=>login(email, pass)}>Увійти</Text>
          </TouchableOpacity>
          <Text style={styles.regtext}>Зареєструватись як адмін</Text>
       </View>

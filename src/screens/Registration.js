@@ -14,8 +14,42 @@ const User = t.struct({
   пароль: t.String,
   підтвердження_паролю: t.String,
 });
+var s_opt={
+  fields:{
+    логін:{
+      keyboardType:'email-address',
+      textContentType:'emailAddress',
+    },
+    пароль:{
+      password: true,
+      secureTextEntry: true,
+      textContentType:'password',
+    },
+    підтвердження_паролю:{
+      password: true,
+      secureTextEntry: true,
+      textContentType:'password',
+    },
+    імя:{
+      textContentType:'name',
+    },
+    прізвище:{
+      textContentType:'familyName',
+    },
+    назва_компанії:{
+      textContentType:'jobTitle',
+    },
+}
+}
+function signup_db(login, name, surname, company){
+  firebase.database().ref('users/' + login).set({
+    name: name,
+    surname: surname,
+    company: company,
+  });
+}
 
-async function signup(email, pass){
+async function signup_auth(email, pass){
 
     try {
         await firebase.auth()
@@ -23,13 +57,17 @@ async function signup(email, pass){
   
         console.log("Account created");
   
-        // Navigate to the Home page, the user is auto logged in
-  
     } catch (error) {
         console.log(error.toString());
     }
     
   };
+
+  function signup(){
+    signup_db(login, name, surname, company);
+    signup_auth(email, pass);
+    // Navigate to the Home page, the user is auto logged in
+  }
 
 export default class Registration extends Component {
   render() {
@@ -43,9 +81,9 @@ export default class Registration extends Component {
         />
       <Text style={styles.plantext}>ПЛАНУВАЛЬНИК</Text>
       <Text style={styles.autotext}>Реєстрація</Text>
-        <Form type={User}  /> 
+        <Form type={User} options={s_opt} /> 
          <TouchableOpacity style={styles.buttoncontainer}>
-         <Text style={styles.textbotton}>Реєстрація</Text>
+         <Text style={styles.textbotton} onPress={()=>signup()} >Реєстрація</Text>
          </TouchableOpacity>
       </View>
        </ScrollView>
@@ -72,7 +110,7 @@ const styles = StyleSheet.create({
      color: 'black',
   },
 autotext:{
-  fontWeight: 100,
+  fontWeight: "100",
   fontSize: 24,
   marginBottom:30,
   color: '#B9AEAE',
@@ -85,7 +123,7 @@ buttoncontainer:{
   backgroundColor: '#F7C20F',
   marginTop: 25,
   marginLeft:90,
-  justifyContent:'CENTER',
+  justifyContent:'center',
 },
 textbotton:{
   fontWeight: 'bold',
