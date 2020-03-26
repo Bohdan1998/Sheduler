@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import firebase from './src/config'
 import Authorization from './src/screens/Authorization'
+import AppStack from './src/routes/AppStack';
 
 function storeHighScore(userId, score) {
   firebase.database().ref('users/' + userId).set({
@@ -71,10 +72,8 @@ export default function App() {
   //    <Button title='login' onPress={()=>login(email,pass)} />
   //    <Button title='logout' onPress={()=>logout()} />
 
-  return (
-    <View style={styles.container}>
-      <Authorization/>    
-    </View>
+  return (    
+    <AppStack/>
   );
 }
 

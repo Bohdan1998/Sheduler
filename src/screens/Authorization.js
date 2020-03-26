@@ -6,6 +6,8 @@ import { render } from 'react-dom';
 import router from '../router'
 import { NavigationContainer } from '@react-navigation/native';
 import MenuScreen from './MenuScreen';
+import Registration from './Registration'
+import { emitNotification } from 'expo/build/Notifications/Notifications';
 
 const Form = t.form.Form;
 
@@ -26,11 +28,13 @@ var f_opt = {
   }
 }
 
-async function login(email, pass) {
-    
+
+
+async function login(email, pass) 
+{
     try {
         await firebase.auth()
-            .signInWithEmailAndPassword(email, pass);
+            .signInWithEmailAndPassword(User.email, User.pass);
   
         console.log("Logged In!");
         router.MenuScreen;
@@ -39,8 +43,7 @@ async function login(email, pass) {
         console.log(error.toString())
         Alert.alert("Помилка", "Хибний логін або пароль!");
     }
-  
-  }
+}
 export default class Authorization extends Component {
   render() {
     return (
@@ -49,9 +52,11 @@ export default class Authorization extends Component {
       <Text style={styles.autotext}>Авторизація</Text>
         <Form type={User} options={f_opt} /> 
          <TouchableOpacity style={styles.buttoncontainer}>
-          <Text style={styles.textbotton} onPress={()=>login(email, pass)}>Увійти</Text>
+          <Text style={styles.textbotton} onPress={()=>login(f_opt.email, f_opt.pass)}>Увійти</Text>
          </TouchableOpacity>
-         <Text style={styles.regtext}>Зареєструватись як адмін</Text>
+         <TouchableOpacity>
+         <Text style={styles.regtext} onPress={() => this.props.navigation.navigate("Registration")}>Зареєструватись як адмін</Text>
+         </TouchableOpacity>
       </View>
     );
   }
