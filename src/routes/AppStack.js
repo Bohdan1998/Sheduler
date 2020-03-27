@@ -8,20 +8,39 @@ import React, { Component } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack';
 
-import Main from '../screens/Main';
 import Authorization from '../screens/Authorization';
+import Main from '../screens/Main';
+import MenuScreen from '../screens/MenuScreen';
+import Notifications from '../screens/Notifications';
 import Registration from '../screens/Registration';
+import Rooms from '../screens/Rooms';
+import SchedulerSCR from '../screens/SchedulerSCR';
+import Tasks from '../screens/Tasks';
+import Team from '../screens/Team';
+
 //import all the screens we are going to switch 
 const screensContainer = createStackNavigator({
-  //Constant which holds all the screens like index of any book 
     Main: { screen: Main }, 
     //First entry by default be our first screen if we do not define initialRouteName
     Authorization: { screen: Authorization }, 
 
-    Registration: { screen: Registration }
+    Registration: { screen: Registration },
+
+    MenuScreen: { screen: MenuScreen },
+
+   // Notifications: { screen: Notifications },
+
+    Rooms: { screen: Rooms },
+
+    SchedulerSCR: { screen: SchedulerSCR },
+
+    Tasks: { screen: Tasks },
+
+    Team: { screen: Team }
   },
   {
-    initialRouteName: 'Authorization',
+    headerMode: 'none',
+    initialRouteName: 'Tasks',
   }
 );
 export default createAppContainer(screensContainer);

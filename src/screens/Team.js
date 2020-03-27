@@ -68,7 +68,7 @@ buttoncontainer:{
   backgroundColor: '#E5E5E5',
   marginTop: 15,
   marginLeft:15,
-  justifyContent:'CENTER',
+  justifyContent:'center',
 },
 textbotton:{
   fontWeight: 'bold',

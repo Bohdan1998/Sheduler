@@ -5,9 +5,9 @@ import router from '../router';
 export default class MainScreen extends Component {
     render() {
         const { Main, ...routes } = router;
-        return (
-            <ScrollView style={{ marginTop: 20 }}>
-                {Object.keys(routes).map(route => (
+        return (            
+           <ScrollView style={{ marginTop: 10 }}> 
+                 {Object.keys(routes).map(route => (
                     <Button
                         key={route}
                         title={route}
@@ -17,4 +17,4 @@ export default class MainScreen extends Component {
             </ScrollView>
         );
     }
-}
+}   

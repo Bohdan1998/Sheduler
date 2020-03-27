@@ -3,11 +3,9 @@ import { View, StyleSheet, Text, Button, Image, TouchableOpacity, Alert} from 'r
 import firebase from '../config'
 import t from 'tcomb-form-native';
 import { render } from 'react-dom';
-import router from '../router'
 import { NavigationContainer } from '@react-navigation/native';
-import MenuScreen from './MenuScreen';
-import Registration from './Registration'
 import { emitNotification } from 'expo/build/Notifications/Notifications';
+
 
 const Form = t.form.Form;
 
@@ -28,31 +26,47 @@ var f_opt = {
   }
 }
 
-
-
 async function login(email, pass) 
-{
-    try {
-        await firebase.auth()
-            .signInWithEmailAndPassword(User.email, User.pass);
-  
-        console.log("Logged In!");
-        router.MenuScreen;
-  
-    } catch (error) {
-        console.log(error.toString())
-        Alert.alert("Помилка", "Хибний логін або пароль!");
-    }
-}
+  {
+    console.log("email "+email);
+      try {
+          await firebase.auth()
+              .signInWithEmailAndPassword(email, pass);
+    
+          console.log("Logged In!");
+          return true;
+    
+      } catch (error) {
+          console.log(error.toString())
+          
+          Alert.alert("Помилка", "Хибний логін або пароль!");
+          
+          return false;
+      }
+  }
+
 export default class Authorization extends Component {
+  
+  
+  handleLogin = () => {
+    const LoginInputData = this._form.getValue();
+    console.log('value: ', LoginInputData);
+    if(login(LoginInputData.логін, LoginInputData.пароль))
+    {
+      this.props.navigation.navigate("MenuScreen")
+    }
+  }
+  
   render() {
     return (
       <View style={styles.container}>
       <Text style={styles.plantext}>ПЛАНУВАЛЬНИК</Text>
       <Text style={styles.autotext}>Авторизація</Text>
-        <Form type={User} options={f_opt} /> 
+        <Form  
+        ref={c => this._form = c}
+        type={User} options={f_opt} /> 
          <TouchableOpacity style={styles.buttoncontainer}>
-          <Text style={styles.textbotton} onPress={()=>login(f_opt.email, f_opt.pass)}>Увійти</Text>
+          <Text style={styles.textbotton} onPress={this.handleLogin}>Увійти</Text>
          </TouchableOpacity>
          <TouchableOpacity>
          <Text style={styles.regtext} onPress={() => this.props.navigation.navigate("Registration")}>Зареєструватись як адмін</Text>

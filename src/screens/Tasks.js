@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   backgroundColor: '#F7C20F',
   marginTop: 635,
   marginLeft:15,
-  justifyContent:'CENTER',
+  justifyContent:'center',
 },
  buttoncontainerr:{
   width: 175,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   backgroundColor: '#F7C20F',
   marginTop: 35,
   marginLeft:15,
-  justifyContent:'CENTER',
+  justifyContent:'center',
 },
 textbotton:{
   fontWeight: 'bold',

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet,Text,Button,Image,TouchableOpacity,SafeAreaView, ScrollView} from 'react-native';
+import firebase from '../config'
 import Constants from 'expo-constants';
 import t from 'tcomb-form-native'; 
 
@@ -14,7 +15,7 @@ const User = t.struct({
   підтвердження_паролю: t.String,
 });
 var s_opt={
-  fields:{
+  fields:{ 
     логін:{
       keyboardType:'email-address',
       textContentType:'emailAddress',
@@ -48,7 +49,7 @@ function signup_db(email, name, surname, company){
   var min = new Date().getMinutes(); //Current Minutes
   var sec = new Date().getSeconds(); //Current Seconds
   let datetime = date + ' ' + month + ' ' + year + ' ' + hours + ':' + min + ':' + sec;
-  firebase.database().ref('users/' + datetime.set({
+  firebase.database().ref('users/' + datetime).set({
     name: name,
     surname: surname,
     email:email,
@@ -63,20 +64,33 @@ async function signup_auth(email, pass){
             .createUserWithEmailAndPassword(email, pass);
   
         console.log("Account created");
+        return true;
   
     } catch (error) {
         console.log(error.toString());
+       return false;
     }
     
   };
-
-  function signup(){
+User
+  function signup()
+  {
     signup_db(email, name, surname, company);
     signup_auth(email, pass);
-    // Navigate to the Home page, the user is auto logged in
   }
 
 export default class Registration extends Component {
+
+  handleSignup = () => {
+    const SignUpInputData = this._form.getValue();
+    console.log('value: ', SignUpInputData);
+    signup_db(SignUpInputData.email, SignUpInputData.імя, SignUpInputData.прізвище, SignUpInputData.назва_компанії);
+    if(signup_auth(SignUpInputData.email, SignUpInputData.пароль))
+    {
+      this.props.navigation.navigate("MenuScreen")
+    }
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -88,9 +102,9 @@ export default class Registration extends Component {
         />
       <Text style={styles.plantext}>ПЛАНУВАЛЬНИК</Text>
       <Text style={styles.autotext}>Реєстрація</Text>
-        <Form type={User} options={s_opt} /> 
+        <Form ref={c => this._form = c} type={User} options={s_opt} /> 
          <TouchableOpacity style={styles.buttoncontainer}>
-         <Text style={styles.textbotton} onPress={()=>signup()} >Реєстрація</Text>
+         <Text style={styles.textbotton} onPress={this.handleSignup} >Реєстрація</Text>
          </TouchableOpacity>
       </View>
        </ScrollView>
