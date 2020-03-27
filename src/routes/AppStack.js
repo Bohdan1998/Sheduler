@@ -28,11 +28,11 @@ const screensContainer = createStackNavigator({
 
     MenuScreen: { screen: MenuScreen },
 
-   // Notifications: { screen: Notifications },
-
-    Rooms: { screen: Rooms },
-
     SchedulerSCR: { screen: SchedulerSCR },
+
+    Notifications: { screen: Notifications },
+
+    Rooms: { screen: Rooms },  
 
     Tasks: { screen: Tasks },
 
@@ -40,7 +40,7 @@ const screensContainer = createStackNavigator({
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Tasks',
+    initialRouteName: 'MenuScreen',
   }
 );
 export default createAppContainer(screensContainer);

@@ -9,12 +9,13 @@ export default class MenuScreen extends Component {
     return (
       
       <View style={styles.container}>
-          <View style={{width:50,height:45,backgroundColor:'#F7C20F',position:'relative',marginTop:45}}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('SchedulerSCR') }>
+          <View style={{width:50,height:45,backgroundColor:'#F7C20F',position:'relative',marginTop:45}}>          
           <View style={{width:30,height:3,backgroundColor:'black',position:'absolute',marginTop:10,marginLeft:10}}></View>
           <View style={{width:30,height:3,backgroundColor:'black',position:'absolute',marginTop:20,marginLeft:10}}></View>
           <View style={{width:30,height:3,backgroundColor:'black',position:'absolute',marginTop:30,marginLeft:10}}></View>
           </View>
-      
+      </TouchableOpacity>
           <Text style={styles.plantext} te>ПЛАНУВАЛЬНИК</Text>
           <Text style={styles.autotext}>Pain son rose more park way that. To things so denied admire. Small for ask shade water manor think men begin. </Text>
           <TouchableOpacity style={styles.buttoncontainer}>
@@ -33,7 +34,7 @@ export default class MenuScreen extends Component {
     );
   }
 }
-
+  
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',

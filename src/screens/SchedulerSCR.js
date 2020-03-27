@@ -6,22 +6,30 @@ export default class SchedulerSCR extends Component {
   render() {
     return (     
       <View style={styles.container}>
-      <View style={{flexDirection:'row',justifyContent:'space-evently'}}>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate('Rooms') }>
+      <View style={{flexDirection:'row',justifyContent:'space-evenly'}}>
         <View style={{width:50,height:45,backgroundColor:'#F7C20F',marginTop:45,borderRadius:70}}></View>
          <Text style={styles.plantext}>Кімнати</Text>
       </View>
-      <View style={{flexDirection:'row',justifyContent:'space-evently'}}>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate('Team') }>
+      <View style={{flexDirection:'row',justifyContent:'space-evenly'}}>
         <View style={{width:50,height:45,backgroundColor:'#F7C20F',marginTop:45,borderRadius:30}}></View>
          <Text style={styles.plantext}>Команда</Text>
       </View>
-      <View style={{flexDirection:'row',justifyContent:'space-evently'}}>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={ () => console.log("About us")}>
+      <View style={{flexDirection:'row',justifyContent:'space-evenly'}}>
         <View style={{width:50,height:45,backgroundColor:'#F7C20F',marginTop:45,borderRadius:30}}></View>
          <Text style={styles.plantext}>Про нас</Text>
       </View>
-      <View style={{flexDirection:'row',justifyContent:'space-evently'}}>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => console.log("Share") }>
+      <View style={{flexDirection:'row',justifyContent:'space-evenly'}}>
         <View style={{width:50,height:45,backgroundColor:'#F7C20F',marginTop:45,borderRadius:30}}></View>
          <Text style={styles.plantext}>Поділитись</Text>
       </View>
+      </TouchableOpacity>
     </View> 
      
     );

@@ -10,12 +10,14 @@ export default class Task extends Component {
     return (
       <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
-      <View style={{flexDirection:'row',justifyContent:'space-evently'}}>
+      <View style={{flexDirection:'row',justifyContent:'space-evenly'}}>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate('SchedulerSCR') }>
       <View style={{width:50,height:45,backgroundColor:'#F7C20F',position:'relative',marginTop:30}}>
       <View style={{width:30,height:3,backgroundColor:'black',position:'absolute',marginTop:10,marginLeft:10}}></View>
        <View style={{width:30,height:3,backgroundColor:'black',position:'absolute',marginTop:20,marginLeft:10}}></View>
       <View style={{width:30,height:3,backgroundColor:'black',position:'absolute',marginTop:30,marginLeft:10}}></View>
       </View>
+      </TouchableOpacity>
       <Text style={styles.plantext}>ТАСК</Text>
       </View>
 
